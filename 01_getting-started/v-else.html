@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="age >= 25">Age : {{ age }}</div>
+        <div v-else>Name : {{ name }}</div>
+        <div>-------------------------------华丽的分割线-------------------------------</div>
+        <div v-show="name.indexOf('c') >= 0">Name: {{ name }}</div>
+        <div v-else>Sex : {{ sex }}</div>
+    </div>
+</body>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            age: 28,
+            name: 'zch',
+            sex: 'Male'
+        }
+    })
+
+</script>
+
+</html>

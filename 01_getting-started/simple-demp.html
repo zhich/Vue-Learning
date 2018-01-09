@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style/demo.css" />
+</head>
+
+<body>
+    <div id="app">
+        <fieldset>
+            <legend>
+                Create New Person
+            </legend>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" v-model="newUser.name" />
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="text" v-model="newUser.age" />
+            </div>
+            <div class="form-group">
+                <label>Sex:</label>
+                <select v-model="newUser.sex">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label></label>
+                <button @click="createUser">Create</button>
+            </div>
+        </fieldset>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(user, index) in users">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.sex }}</td>
+                    <td :class="'text-center'"><button @click="deleteUser(index)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            newUser: {
+                name: '',
+                age: 0,
+                sex: 'Male'
+            },
+            users: [
+                {
+                    name: '张三',
+                    age: 30,
+                    sex: 'Male'
+                },
+                {
+                    name: '李四',
+                    age: 31,
+                    sex: 'Male'
+                },
+                {
+                    name: '王五',
+                    age: 32,
+                    sex: 'Male'
+                },
+                {
+                    name: 'lina',
+                    age: 21,
+                    sex: 'Female'
+                }
+            ]
+        },
+        methods: {
+            createUser: function () {
+                this.users.push(this.newUser);
+                this.newUser = { name: '', age: 0, sex: 'Male' };
+            },
+            deleteUser: function (index) {
+                this.users.splice(index, 1);
+            }
+        }
+    })
+
+</script>
+
+</html>
